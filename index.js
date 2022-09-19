@@ -40,6 +40,7 @@ function playRound(playerChoice, computerChoice) {
 
     alert(roundResult);
     console.log(roundResult);
+    console.log(playerScore, computerScore)
     return computerScore, playerScore;
 }
 
@@ -54,9 +55,8 @@ function game() {
     finalScore();
 }
 
-
 //At the end of 5 rounds display the finial winner and score
-function finalScore(playerScore, computerScore){
+function finalScore(){
     if (playerScore > computerScore) {
         alert(`You win the game ${playerScore} rounds to ${computerScore}!`)
     } else if (computerScore > playerScore) {
