@@ -24,14 +24,10 @@ function playRound(playerChoice, computerChoice) {
 
     if (playerChoice === computerChoice) {
         roundResult = `Tie game! You both picked ${playerChoice}`
-    } else if (playerChoice === "Rock" && computerChoice === "Scissors") {
+    } else if (playerChoice === "Rock" && computerChoice === "Scissors" ||
+               playerChoice === "Scissors" && computerChoice === "Paper" || 
+               playerChoice === "Paper" && computerChoice === "Rock") {
         roundResult = "Rock beats Scissors! You win!"
-        ++playerScore;
-    } else if (playerChoice === "Scissors" && computerChoice === "Paper") {
-        roundResult = "Scissors beats Paper! You win!"
-        ++playerScore;
-    } else if (playerChoice === "Paper" && computerChoice === "Rock") {
-        roundResult = "Paper beats Rock! You win!"
         ++playerScore;
     } else {
         roundResult = `${computerChoice} beats ${playerChoice}! You lose!`
