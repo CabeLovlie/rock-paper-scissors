@@ -26,16 +26,16 @@ function playRound(playerChoice, computerChoice) {
         roundResult = `Tie game! You both picked ${playerChoice}`
     } else if (playerChoice === "Rock" && computerChoice === "Scissors") {
         roundResult = "Rock beats Scissors! You win!"
-        playerScore++;
+        ++playerScore;
     } else if (playerChoice === "Scissors" && computerChoice === "Paper") {
         roundResult = "Scissors beats Paper! You win!"
-        playerScore++;
+        ++playerScore;
     } else if (playerChoice === "Paper" && computerChoice === "Rock") {
         roundResult = "Paper beats Rock! You win!"
-        playerScore++;
+        ++playerScore;
     } else {
         roundResult = `${computerChoice} beats ${playerChoice}! You lose!`
-        computerScore++;
+        ++computerScore;
     }
 
     alert(roundResult);
