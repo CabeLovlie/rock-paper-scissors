@@ -1,0 +1,48 @@
+body {
+    display: flex;
+    flex-direction: column;
+    background-color: rgb(28, 28, 28);
+    color: rgb(177, 214, 255);
+}
+
+.gameUI {
+    display: none;
+    flex-direction: column;
+}
+
+.buttons {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.rock {
+    display: flex;
+    height: 200px;
+    width: 200px;
+    border-radius: 50%;
+    align-items: center;
+    justify-content: center;
+}
+
+.paper {
+    display: flex;
+    height: 200px;
+    width: 200px;
+    border-radius: 50%;
+    align-items: center;
+    justify-content: center;
+}
+
+.scissors {
+    display: flex;
+    height: 200px;
+    width: 200px;
+    border-radius: 50%;
+    align-items: center;
+    justify-content: center;
+}
+
+.reloadButton {
+    display: none;
+}
