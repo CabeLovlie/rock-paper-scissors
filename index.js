@@ -2,15 +2,23 @@
 const game = () => {
     let computerScore = 0;
     let playerScore = 0;
-    let rounds = 5;
+    let rounds = 0;
 
     const gameUI = document.querySelector('.gameUI');
     const startGameButton = document.querySelector('.startGame');
+    const gameTitle = document.querySelector('.gameTitle');
+    const playerSelection = document.querySelector('.playerChoice');
+    const compSelection = document.querySelector('.compChoice');
 
     startGameButton.addEventListener('click', () => {
         gameUI.style.display = 'flex';
         startGameButton.style.display = 'none';
+        gameTitle.innerText = 'Let\'s get ready to rumble!'
     });
+
+    function capitalizeFirstLetter(string) {
+        return string.charAt(0).toUpperCase() + string.slice(1);
+    }
 
     //Plays the game
     const playGame = () => {
@@ -19,28 +27,26 @@ const game = () => {
         const paperButton = document.querySelector('.paper');
         const scissorsButton = document.querySelector('.scissors');
         const playerChoices = [rockButton, paperButton, scissorsButton];
-        const rockPaperScissorsArray = ['Rock', 'Paper', 'Scissors'];
-        const roundsDisplay = document.querySelector('.rounds');
+        const rockPaperScissorsArray = ['rock', 'paper', 'scissors'];
+        const roundsRemaining = document.querySelector('.roundNumber');
 
         //Begins playing the game
         playerChoices.forEach(option => {
             option.addEventListener('click', function(){
 
                 //Counts the rounds left in the game
-                const roundsRemaining = document.querySelector('.roundsRemaining');
-                --rounds;
-                roundsRemaining.innerText = `Rounds remaining: ${rounds}`;
+                ++rounds;
+                roundsRemaining.innerText = `${rounds}`;
 
                 //Selects a random choice for the computer
                 const choiceNumber = Math.floor(Math.random()*3);
                 const computerChoice = rockPaperScissorsArray[choiceNumber];
                 
                 //Function to check who wins
-                playRound(this.innerText, computerChoice);
+                playRound(this.className, computerChoice);
 
-                if (rounds == 0) {
-                    console.log('game over');
-                    gameOver(playerOptions, roundsDisplay);
+                if (rounds == 5) {
+                    gameOver(playerOptions, roundsRemaining);
                 }
             })
         })
@@ -49,44 +55,44 @@ const game = () => {
     //The program compares the selection of the user to that of the computer
     //based on: Rock > Scissors, Scissors > Paper, and Paper > Rock
     const playRound = (playerChoice, computerChoice) => {
-        const playerSelection = document.querySelector('.playerChoice');
-        const compSelection = document.querySelector('.compChoice');
         const roundResultText = document.querySelector('.resultText');
         const playerScoreDisplay = document.querySelector('.playerScoreDisplay');
         const compScoreDisplay = document.querySelector('.compScoreDisplay');
-        playerSelection.innerText = `The player chose: ${playerChoice}`;
-        compSelection.innerText = `The computer chose: ${computerChoice}`;
+        playerSelection.innerText = `You chose: ${capitalizeFirstLetter(playerChoice)}`;
+        compSelection.innerText = `The computer chose: ${capitalizeFirstLetter(computerChoice)}`;
 
         let roundResult;
 
         if (playerChoice === computerChoice) {
-            roundResult = `Tie game! You both picked ${playerChoice}!`
-        } else if (playerChoice === "Rock" && computerChoice === "Scissors" ||
-                playerChoice === "Scissors" && computerChoice === "Paper" || 
-                playerChoice === "Paper" && computerChoice === "Rock") {
-            roundResult = `${playerChoice} beats ${computerChoice}! You win!`
+            roundResult = `Tie game! You both picked ${capitalizeFirstLetter(playerChoice)}!`
+        } else if (playerChoice === "rock" && computerChoice === "scissors" ||
+                playerChoice === "scissors" && computerChoice === "paper" || 
+                playerChoice === "paper" && computerChoice === "rock") {
+            roundResult = `${capitalizeFirstLetter(playerChoice)} beats ${capitalizeFirstLetter(computerChoice)}! You win!`
             ++playerScore;
         } else {
-            roundResult = `${computerChoice} beats ${playerChoice}! You lose!`
+            roundResult = `${capitalizeFirstLetter(computerChoice)} beats ${capitalizeFirstLetter(playerChoice)}! You lose!`
             ++computerScore;
         }
 
-        roundResultText.innerText = `The result of the round was: ${roundResult}`;
-        playerScoreDisplay.innerText = `Your Score: ${playerScore}`;
-        compScoreDisplay.innerText = `Computer's Score: ${computerScore}`;
+        roundResultText.innerText = `${roundResult}`;
+        playerScoreDisplay.innerText = `${playerScore}`;
+        compScoreDisplay.innerText = `${computerScore}`;
     }
 
-    const gameOver = (playerOptions, roundsDisplay) => {
+    const gameOver = (playerOptions, roundsRemaining) => {
         const roundResultText = document.querySelector('.resultText');
         const reloadButton = document.querySelector('.reloadButton');
 
-        roundsDisplay.innerText = `Game Over!`;
+        gameTitle.innerText = `Game Over!`;
         playerOptions.style.display = 'none';
+        playerSelection.style.display = 'none';
+        compSelection.style.display = 'none';
        
         if (playerScore > computerScore) {
-            roundResultText.innerText = `You win, ${playerScore} rounds to ${computerScore} rounds!`;
+            roundResultText.innerText = `You win, ${playerScore} to ${computerScore}!`;
         } else if (computerScore > playerScore) {
-            roundResultText.innerText = `You lose, ${computerScore} rounds to ${playerScore} rounds!`
+            roundResultText.innerText = `You lose, ${computerScore} to ${playerScore}!`
         } else {
             roundResultText.innerText = `The game ends in a tie!`;
         }

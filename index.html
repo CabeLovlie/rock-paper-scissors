@@ -12,26 +12,34 @@
       <button class="startGame">Start Game</button>
     </div>
     <div class="gameUI">
-      <div class="rounds">
-        <h4 class="roundsRemaining">Rounds remaining: 5</h4>
+      <div class="topUI">
+        <div class="roundUI">
+          <div class="roundsTitle">Round</div>
+          <div class="roundNumber">0</div>
+        </div>
+        <div class="scoresUI">
+          <div class="playerScore">
+            <div class="playerScoreDisplay">0</div>
+            <div class="playerScoreTitle">Player</div>
+          </div>
+          <div class="compScore">
+            <div class="compScoreDisplay">0</div>
+            <div class="compScoreTitle">Computer</div>
+          </div>
+        </div>
       </div>
       <div class="options">
-        <h3>Make your selection:</h3>
         <div class="buttons">
           <button class="rock"><img src="images/rockIcon.png" width="200px"></button>
           <button class="paper"><img src="images/paperIcon.png" width="200px"></button>
           <button class="scissors"><img src="images/scissorsIcon.png" width="200px"></button>
         </div>
       </div>
-      <div class="player">
-        <h4 class="playerChoice">Player move: </h4>
-        <h4 class="playerScoreDisplay">Player's Score: </h4>
-      </div>
-      <div class="comp">
-        <h4 class="compChoice">Computer move: </h4>
-        <h4 class="compScoreDisplay">Computer's score: </h4>
-      </div>
-      <div class="result">
+      <div class="resultUI">
+        <div class="choiceDisplay">
+          <h4 class="playerChoice"></h4>
+          <h4 class="compChoice"></h4>
+        </div>
         <h4 class="resultText"></h4>
       </div>
       <div class="reload">
